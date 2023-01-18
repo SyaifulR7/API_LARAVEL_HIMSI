@@ -29,9 +29,9 @@ class PenggunaController extends Controller {
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-        $responsex = response()->json(compact('token'))->header('Authorization','Bearer '.$token)->header('Accept','application/json');
-        $responsex = $responsex->withCookie(cookie('bearer_token',$token, 45000));
-        return $responsex;
+        $saveToHeader = response()->json(compact('token'))->header('Authorization','Bearer '.$token)->header('Accept','application/json');
+        return $saveToHeader;
+        $saveToCookie = $saveToCookie->withCookie(cookie('bearer_token',$token, 45000));
     }
     public function daftar(Request $request) {
         $validator = Validator::make($request->all(), [

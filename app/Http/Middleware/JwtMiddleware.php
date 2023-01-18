@@ -12,8 +12,8 @@ class JwtMiddleware extends BaseMiddleware
 {
     public function handle(Request $request, Closure $next) {
         try {
-            // $user = JWTAuth::parseToken()->authenticate();
-            $user = 'Bearer '. request()->cookie('bearer_token');
+            $user = JWTAuth::parseToken()->authenticate();
+            // $user = 'Bearer '. request()->cookie('bearer_token');
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 return response()->json(['status'=>'Kode Token Salah']);
